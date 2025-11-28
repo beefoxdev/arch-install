@@ -9,10 +9,10 @@ if ! command -v doppler &> /dev/null; then
 fi
 
 # Check if logged in to Doppler
-if ! doppler me &>/dev/null; then
+if ! doppler auth status &>/dev/null; then
     echo "Not logged in to Doppler. Starting login process..."
     doppler login
-    if ! doppler me &>/dev/null; then
+    if ! doppler auth status &>/dev/null; then
         echo "Login failed. Exiting."
         exit 1
     fi
