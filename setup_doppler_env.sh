@@ -18,7 +18,7 @@ fi
 echo "Fetching environment variables from Doppler omarchy project prd config..."
 
 # Get secrets, filter out VPN_ prefixed
-SECRETS=$(doppler run --project omarchy --config prd -- printenv 2>/dev/null | grep -v '^VPN_')
+SECRETS=$(env -i doppler run --project omarchy --config prd -- printenv 2>/dev/null | grep -v '^VPN_')
 
 if [ -z "$SECRETS" ]; then
     echo "No secrets found or failed to fetch."
