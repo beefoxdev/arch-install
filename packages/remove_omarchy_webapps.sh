@@ -8,6 +8,6 @@ if ! command -v omarchy-webapp-remove &> /dev/null; then
 fi
 
 echo "Removing default omarchy web apps..."
-omarchy-webapp-remove "Basecamp" "WhatsApp" "Google Photos" "Google Contacts" "Google Messages" "ChatGPT" "YouTube" "GitHub" "X" "Figma" "Discord"
+omarchy-webapp-remove "Basecamp" "WhatsApp" "Google Photos" "Google Contacts" "Google Messages" "ChatGPT" "YouTube" "GitHub" "X" "Figma" "Discord" "HEY" "Zoom"
 
 echo "Removal complete."
