@@ -2,6 +2,9 @@
 
 # Setup Doppler environment variables in .bashrc
 
+# Filters for unwanted environment variables (pipe-separated patterns)
+FILTERS="^VPN_|^DOPPLER_|^HOME=|^PATH=|^DBUS_SESSION_BUS_ADDRESS=|^USER=|^SHELL=|^PWD=|^OLDPWD=|^SHLVL=|^_=|^LOGNAME="
+
 # Check if Doppler is installed
 if ! command -v doppler &> /dev/null; then
     echo "Doppler CLI not found. Please install it first using install_doppler-cli-bin.sh"
@@ -17,8 +20,8 @@ fi
 
 echo "Fetching environment variables from Doppler omarchy project prd config..."
 
-# Get secrets, filter out VPN_ prefixed
-SECRETS=$(env -i doppler run --project omarchy --config prd -- printenv | grep -v '^VPN_')
+# Get secrets, filter out unwanted vars
+SECRETS=$(env -i HOME="$HOME" PATH="/usr/local/bin:/usr/bin:/bin" doppler run --project omarchy --config prd -- env | grep -E -v "($FILTERS)")
 
 if [ -z "$SECRETS" ]; then
     echo "No secrets found or failed to fetch. Check project/config access."
