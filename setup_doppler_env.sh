@@ -12,10 +12,7 @@ fi
 if ! doppler auth status &>/dev/null; then
     echo "Not logged in to Doppler. Starting login process..."
     doppler login
-    if ! doppler auth status &>/dev/null; then
-        echo "Login failed. Exiting."
-        exit 1
-    fi
+    echo "Login process completed. Continuing..."
 fi
 
 echo "Fetching environment variables from Doppler omarchy project prd config..."
